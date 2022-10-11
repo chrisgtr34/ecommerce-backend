@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category, Product } = require('../../models');
+const { Category, Product,  } = require('../../models');
 
 // The `/api/categories` endpoint
 
@@ -12,12 +12,12 @@ router.get('/', (req, res) => {
       attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
   })
-    .then(CatData => {
-      if (!CatData) {
+    .then(catData => {
+      if (!catData) {
         res.status(404).json({ message: 'No categories where found' });
         return;
       }
-      res.json(CatData);
+      res.json(catData);
     })
     .catch(err => {
       console.log(err);
@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
   Category.create({
     category_name: req.body.category_name
   })
-    .then(dbcatData => res.json(dbcatData))
+    .then(catData => res.json(catData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -69,12 +69,12 @@ router.put('/:id', (req, res) => {
         id: req.params.id
     }
   })
-    .then(dbcatData => {
-        if (!dbcatData[0]) {
+    .then(catData => {
+        if (!catData[0]) {
             res.status(404).json({ message: 'No category where found'});
             return;
         }
-        res.json(dbcatData);
+        res.json(catData);
   })
     .catch(err => {
         console.log(err); 
@@ -83,18 +83,18 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
+  // delete one product by its `id` value
   Category.destroy({
     where: {
       id: req.params.id
     }
   })
-    .then(categoryDb => {
-      if (!categoryDb) {
-        res.status(404).json({ message: 'No category where found' });
+    .then(catData => {
+      if (!catData) {
+        res.status(404).json({ message: 'No category found with this id' });
         return;
       }
-      res.json(categoryDb);
+      res.json(catData);
     })
     .catch(err => {
       console.log(err);
