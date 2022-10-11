@@ -10,7 +10,7 @@
   # Installation
   In order to run the application you must first install npm modules by typing `npm install` in the terminal. Then you go under the db folder and prompt mysql in the terminal to gather the data. First enter "source schema.sql" followed by "source seed.sql". Once you exit msql you can then start to "npm start" the app ensure the server is listening in order to utlize the insomnia app to display the data.
 
-  # GitHub Username
+  # gitHub 
  (https://github.com/chrisgtr34)
 
 
